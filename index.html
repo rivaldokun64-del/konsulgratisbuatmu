@@ -3,80 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apaa Yaaaa</title>
+<title>Pertanyaan Penting</title>
+
 <style>
     body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background: #f2f2f2;
-        height: 100vh;
-        overflow: hidden;
         margin: 0;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #fafafa;
     }
-    h1 { font-size: 28px; margin-bottom: 30px; }
-    #iyaBtn, #tidakBtn {
-        padding: 12px 22px;
-        font-size: 18px;
+
+    h1 {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 17px;
         border: none;
-        border-radius: 8px;
+        border-radius: 6px;
         cursor: pointer;
-        margin: 10px;
+        margin: 8px;
+        transition: 0.2s ease;
     }
-    #iyaBtn { background: #00bfff; color: white; position: absolute; }
-    #tidakBtn { background: #ff4b4b; color: white; }
+
+    #iyaBtn {
+        background-color: #0077cc;
+        color: white;
+        position: absolute;
+    }
+
+    #tidakBtn {
+        background-color: #c0392b;
+        color: white;
+        position: relative;
+    }
 
     #surprise {
         display: none;
-        font-size: 24px;
-        margin-top: 20px;
-        animation: pop 0.6s ease-out;
+        font-size: 20px;
+        font-weight: 500;
+        margin-top: 25px;
+        text-align: center;
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
     }
 
-    @keyframes pop {
-        0% { transform: scale(0); }
-        70% { transform: scale(1.2); }
-        100% { transform: scale(1); }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
     }
 </style>
 </head>
+
 <body>
 
 <h1>Kamu serius mau tau WA aku?</h1>
 
 <button id="iyaBtn">Iya</button>
-<button id="tidakBtn" onclick="alert('Yahh 😢')">Tidak</button>
+<button id="tidakBtn" onclick="alert('Baik, tidak usah.')">Tidak</button>
 
-<div id="surprise">✨ Oke deh… kamu menang! Klik lagi buat lanjut ke WA-ku ✨</div>
+<div id="surprise">Baik, kamu berhasil. Klik lagi untuk melanjutkan.</div>
 
 <script>
 let moveCount = 0;
 const iyaBtn = document.getElementById("iyaBtn");
 const surprise = document.getElementById("surprise");
 
-const randomPosition = () => {
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 80);
+function randomPosition() {
+    const width = window.innerWidth - 120;
+    const height = window.innerHeight - 80;
+
+    const x = Math.random() * width;
+    const y = Math.random() * height;
+
     iyaBtn.style.left = x + "px";
     iyaBtn.style.top = y + "px";
-};
+}
 
 iyaBtn.addEventListener("click", () => {
     moveCount++;
 
     if (moveCount <= 4) {
         randomPosition();
-    } else if (moveCount === 5) {
+    } 
+    else if (moveCount === 5) {
         surprise.style.display = "block";
         iyaBtn.style.position = "relative";
         iyaBtn.style.left = "0px";
         iyaBtn.style.top = "0px";
-        iyaBtn.innerText = "Lanjut ke WA";
-    } else {
-        // GANTI YOURNUMBER dengan nomor WhatsApp-mu
-        window.location.href = "https://wa.me/6281261532336";
+        iyaBtn.innerText = "Lanjut";
+    } 
+    else {
+        window.location.href = "https://wa.me/6281261532336"; 
+        // Ganti YOURNUMBER dengan nomor WA kamu, contoh: 6281234567890
     }
 });
 </script>
