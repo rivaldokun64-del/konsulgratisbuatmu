@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apaa Yaaaa</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f2f2f2;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    h1 { font-size: 28px; margin-bottom: 30px; }
+    #iyaBtn, #tidakBtn {
+        padding: 12px 22px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 10px;
+    }
+    #iyaBtn { background: #00bfff; color: white; position: absolute; }
+    #tidakBtn { background: #ff4b4b; color: white; }
+
+    #surprise {
+        display: none;
+        font-size: 24px;
+        margin-top: 20px;
+        animation: pop 0.6s ease-out;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0); }
+        70% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+</style>
+</head>
+<body>
+
+<h1>Kamu serius mau tau WA aku?</h1>
+
+<button id="iyaBtn">Iya</button>
+<button id="tidakBtn" onclick="alert('Yahh 😢')">Tidak</button>
+
+<div id="surprise">✨ Oke deh… kamu menang! Klik lagi buat lanjut ke WA-ku ✨</div>
+
+<script>
+let moveCount = 0;
+const iyaBtn = document.getElementById("iyaBtn");
+const surprise = document.getElementById("surprise");
+
+const randomPosition = () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 80);
+    iyaBtn.style.left = x + "px";
+    iyaBtn.style.top = y + "px";
+};
+
+iyaBtn.addEventListener("click", () => {
+    moveCount++;
+
+    if (moveCount <= 4) {
+        randomPosition();
+    } else if (moveCount === 5) {
+        surprise.style.display = "block";
+        iyaBtn.style.position = "relative";
+        iyaBtn.style.left = "0px";
+        iyaBtn.style.top = "0px";
+        iyaBtn.innerText = "Lanjut ke WA";
+    } else {
+        // GANTI YOURNUMBER dengan nomor WhatsApp-mu
+        window.location.href = "https://wa.me/6281261532336";
+    }
+});
+</script>
+
+</body>
+</html>
